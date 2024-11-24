@@ -24,6 +24,14 @@
                         <span class="pc-mtext">{{ __('messages.duet_mode') }}</span>
                     </a>
                 </li>
+                <li class="pc-item">
+                    <a href="{{ route('brand.clients') }}" class="pc-link">
+                        <span class="pc-micon" >
+                            <img src="{{ url('Brand') }}/assets/images/clients.png" alt="">
+                        </span>
+                        <span class="pc-mtext">{{ __('messages.clients') }}</span>
+                    </a>
+                </li>
                 <!-- link -->
                 <li class="pc-item">
                     <a href="{{ route('brand.dashboard') }}" class="pc-link">

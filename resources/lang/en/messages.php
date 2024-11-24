@@ -96,5 +96,20 @@ return [
     'password_help' => 'Password should be 6+ characters , mix of letters and numbers.',
     'describe_advertisement' => 'Describe advertisement',
     'select_brand' => 'Select Brand',
+    'salla_store_config' => 'Salla API',
+    'client_id' => 'Client ID',
+    'client_secret' => 'Client Secret',
+    'to_get_the_salla' => 'To get the data to link the Salla store, please visit the following link',
+    'be aware' => 'Please specify the access permission to clients and all the required permissions when creating the application',
+    'clients' => 'Clients',
+    'name' => 'name',
+    'mobile' => 'mobile',
+    'country' => 'country',
+    'currency' => 'currency',
+    'gender' => 'gender',
+    'id' => 'ID',
+    'lang' => 'lang',
+    'created_at' => 'registered at',
+
 
 ];

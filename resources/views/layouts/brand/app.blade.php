@@ -10,7 +10,9 @@
 
     @include('layouts.brand.sidebar')
     @include('layouts.brand.header')
-
+    <div id="global-loader" class="global-loader">
+        <div class="spinner"></div>
+    </div>
     @yield('site_content')
 
     @include('layouts.brand.js')
