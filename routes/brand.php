@@ -37,7 +37,15 @@ Route::prefix('brand')->middleware('web')->namespace('App\Http\Controllers\Brand
 
         Route::get('duet', 'DuetController@index')->name('brand.duet');
         Route::get('/duet/data', 'DuetController@index')->name('duet.data');
+        Route::get('clients', 'CLientController@index')->name('brand.clients');
+        Route::get('/clients/data', 'CLientController@index')->name('clients.data');
         Route::post('addDuetCoupon', 'DuetController@addDuetCoupon')->name('addDuetCoupon');
+
+        Route::get('coupons', 'CouponController@index')->name('brand.coupons');
+        Route::get('/coupons/data', 'CouponController@index')->name('coupons.data');
+
+        Route::get('carts', 'CartController@index')->name('brand.carts');
+        Route::get('/carts/data', 'CartController@index')->name('carts.data');
 
         Route::get('announce', 'AnnounceController@index')->name('brand.announce');
         Route::post('add_ad', 'AnnounceController@add_ad')->name('brand.add-ad');
@@ -51,6 +59,8 @@ Route::prefix('brand')->middleware('web')->namespace('App\Http\Controllers\Brand
 
         Route::get('settings', 'SettingController@index')->name('brand.settings');
         Route::post('post_setting', 'SettingController@post_setting')->name('brand.post_setting');
+        Route::post('post_salla_setting', 'SettingController@post_salla_setting')->name('brand.post_salla_setting');
+        Route::get('callback', 'SettingController@callback');
 
 
     });
