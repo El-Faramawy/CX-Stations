@@ -247,6 +247,7 @@
                                             <a href="https://portal.salla.partners/apps"> انشاء تطبيق </a>
                                             <span class="d-block">
                                                 {{ __('messages.be_aware') }}
+                                                <span>{{env('APP_URL').'/brand/callback'}}</span>
                                             </span>
                                         </p>
 
