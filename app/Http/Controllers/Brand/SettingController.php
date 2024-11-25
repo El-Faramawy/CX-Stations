@@ -102,10 +102,15 @@ class SettingController extends Controller
 
     }
 
-    public function callback(request $request)
+    public function callback(Request $request)
     {
-        $salla = SallaStore::where('brand_id',brand()->user()->id)->first();
-        $data =[
+        $salla = SallaStore::where('brand_id', brand()->user()->id)->first();
+
+        if (!$salla) {
+            return redirect()->route('brand.settings')->withErrors(__('Salla store not found.'));
+        }
+
+        $data = [
             'client_id'     => $salla->client_id,
             'client_secret' => $salla->client_secret,
             'grant_type'    => 'authorization_code',
@@ -115,18 +120,44 @@ class SettingController extends Controller
             'state'         => $request->state,
         ];
 
-        $response = Http::asForm()->post(config('salla.token_url'),$data);
-        $json_response = json_decode($response->body());
+        // Request token from Salla API
+        $response = Http::asForm()->post(config('salla.token_url'), $data);
 
-        $url = config('salla.salla-api-url').'/store/info';
-        $store_info =  Http::withToken($json_response->access_token)->acceptJson()->get($url);
-        if ($store_info->successful()){
-            $salla->update([
-                'access_token'  => $json_response->access_token,
-                'refresh_token' => $json_response->refresh_token,
-                'expire_at'     => Carbon::parse(now()->addSeconds($json_response->expires_in)),
-            ]);
+        if ($response->failed()) {
+            return redirect()->route('brand.settings')->withErrors(__('messages.Failed to fetch token from Salla API'));
         }
-        return redirect()->route('brand.settings');
+
+        $json_response = $response->json();
+
+        if (!isset($json_response['access_token'], $json_response['refresh_token'], $json_response['expires_in'])) {
+            return redirect()->route('brand.settings')->withErrors(__('messages.Invalid response from Salla API'));
+        }
+
+        // Fetch store information
+        $url = config('salla.salla-api-url') . '/store/info';
+        $store_info_response = Http::withToken($json_response['access_token'])->acceptJson()->get($url);
+
+        if ($store_info_response->failed()) {
+            return redirect()->route('brand.settings')->withErrors(__('messages.Failed to fetch store info from Salla API'));
+        }
+        if (isset($json_response['scope'])) {
+            $scopes = explode(' ', $json_response['scope']);
+            if (!in_array('customers.read', $scopes) && !in_array('customers.read_write', $scopes) ) {
+                return redirect()->route('brand.settings')->withErrors(__('messages.Scope does not include clients.read'));
+            }
+            if (!in_array('marketing.read', $scopes) && !in_array('marketing.read_write', $scopes) ) {
+                return redirect()->route('brand.settings')->withErrors(__('messages.Scope does not include marketing.read'));
+            }
+
+        }
+
+        // Update SallaStore with new tokens
+        $salla->update([
+            'access_token'  => $json_response['access_token'],
+            'refresh_token' => $json_response['refresh_token'],
+            'expire_at'     => now()->addSeconds($json_response['expires_in']),
+        ]);
+
+        return redirect()->route('brand.settings')->with('success', __('messages.Salla settings updated successfully'));
     }
 }

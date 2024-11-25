@@ -20,35 +20,45 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        @if($clients)
+                        @if($coupons)
                             <table class="dataTableTable display table table-striped table-hover dt-responsive nowrap"
                                    style="width: 100%">
                                 <thead>
                                 <tr>
                                     <th>{{ __('messages.id') }}</th>
-                                    <th>{{ __('messages.name') }}</th>
-                                    <th>{{ __('messages.mobile') }}</th>
-                                    <th>{{ __('messages.email') }}</th>
-                                    <th>{{ __('messages.gender') }}</th>
-                                    <th>{{ __('messages.country') }}</th>
-                                    <th>{{ __('messages.currency') }}</th>
-                                    <th>{{ __('messages.lang') }}</th>
-                                    <th>{{ __('messages.created_at') }}</th>
+                                    <th>{{ __('messages.code') }}</th>
+                                    <th>{{ __('messages.type') }}</th>
+                                    <th>{{ __('messages.status') }}</th>
+                                    <th>{{ __('messages.amount') }}</th>
+                                    <th>{{ __('messages.minimum_amount') }}</th>
+                                    <th>{{ __('messages.maximum_amount') }}</th>
+                                    <th>{{ __('messages.expiry_date') }}</th>
+                                    <th>{{ __('messages.start_date') }}</th>
+                                    <th>{{ __('messages.free_shipping') }}</th>
+                                    <th>{{ __('messages.usage_limit') }}</th>
+                                    <th>{{ __('messages.usage_limit_per_user') }}</th>
+
+                                    <th>{{ __('messages.co_created_at') }}</th>
 
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($clients->data as $client)
+                                @foreach($coupons->data as $coupon)
                                     <tr>
-                                        <td> {{$client->id ?? ''}} </td>
-                                        <td> {{$client->first_name." ".$client->last_name ?? ''}}</td>
-                                        <td> {{$client->mobile_code.$client->mobile ?? ''}}</td>
-                                        <td> {{$client->email ?? 'غير مدخل' }}</td>
-                                        <td> {{$client->gender == 'male' ? 'ذكر' : 'أنثي' }}</td>
-                                        <td> {{$client->country ?? '' }}</td>
-                                        <td> {{$client->currency ?? '' }}</td>
-                                        <td> {{$client->lang == 'ar' ? 'العربية' : $client->lang }}</td>
-                                        <td> {{ \Carbon\Carbon::parse($client->created_at->date)->format('Y-m-d') }} </td>
+                                        <td> {{$coupon->id ?? ''}} </td>
+                                        <td> {{$coupon->code ?? ''}}</td>
+                                        <td> {{$coupon->type == 'percentage' ? 'نسبة' : 'قيمة' }}</td>
+                                        <td> {{$coupon->status == 'active' ? 'نشط' : 'غير نشط' }}</td>
+                                        <td> {{$coupon->amount->amount ?? '' }}</td>
+                                        <td> {{$coupon->minimum_amount->amount ?? '' }}</td>
+                                        <td> {{$coupon->maximum_amount->amount ?? '' }}</td>
+                                        <td> {{$coupon->expiry_date ?? '' }}</td>
+                                        <td> {{$coupon->start_date ?? '' }}</td>
+                                        <td> {{$coupon->free_shipping ? 'نعم' : 'لا' }}</td>
+                                        <td> {{$coupon->usage_limit }}</td>
+                                        <td> {{$coupon->usage_limit_per_user }}</td>
+
+                                        <td> {{ \Carbon\Carbon::parse($coupon->created_at->date)->format('Y-m-d') }} </td>
                                     </tr>
                                 @endforeach
 

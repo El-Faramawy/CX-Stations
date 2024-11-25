@@ -41,6 +41,9 @@ Route::prefix('brand')->middleware('web')->namespace('App\Http\Controllers\Brand
         Route::get('/clients/data', 'CLientController@index')->name('clients.data');
         Route::post('addDuetCoupon', 'DuetController@addDuetCoupon')->name('addDuetCoupon');
 
+        Route::get('coupons', 'CouponController@index')->name('brand.coupons');
+        Route::get('/coupons/data', 'CouponController@index')->name('coupons.data');
+
         Route::get('announce', 'AnnounceController@index')->name('brand.announce');
         Route::post('add_ad', 'AnnounceController@add_ad')->name('brand.add-ad');
 

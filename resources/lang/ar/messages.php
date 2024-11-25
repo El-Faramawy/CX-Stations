@@ -109,7 +109,29 @@ return [
     'gender' => 'النوع',
     'id' => 'ID',
     'lang' => 'اللغة',
+    'expire_at' => 'وقت انتهاء صلاحية الوصول',
     'created_at' => 'تاريخ التسجيل في المتجر',
+    'Failed to fetch token from Salla API' => 'عذرا حدث خطأ غير معروف في الربط مع سلة ... حاول مجددا',
+    'Invalid response from Salla API' => 'عذرا حدث خطأ حاول مجددا',
+    'Failed to fetch store info from Salla API' => 'غير قادر علي ربط متجر سلة',
+    'Scope does not include clients.read' => 'خطأ لم نتمكن من الوصول الي صلاحية قراءة العملاء, يرجي اعطاء الصلاحية للتطبيق من سلة والمحاولة مجددا',
+    "renew_the_data" => 'يتوجب عليك تجديد الربط مع سلة قبل هذا الميعاد',
+    "unable_to_read" => 'غير قادر علي قراءة بيانات',
+    "coupons_Salla" => 'كوبونات سلة',
+    "Scope does not include marketing.read" => 'خطأ لم نتمكن من الوصول الي صلاحية قراءة التسويق, يرجي اعطاء الصلاحية للتطبيق من سلة والمحاولة مجددا',
+    'code' => 'كود الكوبون',
+    'type' => 'نوع الخصم للعميل',
+    'amount' => 'القيمة',
+    'minimum_amount' => 'الحد الادنى من المشتريات',
+    'maximum_amount' => 'المبلغ الأقصى للتخفيض',
+    'expiry_date' => 'تاريخ النهاية',
+    'start_date' => 'تاريخ البداية',
+    'free_shipping' => 'مع شحن مجاني ؟',
+    'usage_limit' => 'حد الاستخدام',
+    'usage_limit_per_user' => 'مرات الاستخدام للعميل الواحد',
+    'co_created_at' => 'تاريخ الانشاء',
+
+
 
 
 ];

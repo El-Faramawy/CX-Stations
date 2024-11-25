@@ -19,6 +19,15 @@
                 <div class="col-12 p-2">
                     <div class="card">
                         <div class="card-body">
+                            @if (session('errors'))
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach (session('errors')->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <!-- Nav tabs -->
                             <div class="nav settingNav">
                                 <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile">
@@ -240,21 +249,35 @@
                                                 {{ __('messages.be_aware') }}
                                             </span>
                                         </p>
-                                        <div class="col-md-6 col-xl-6 p-2">
-                                            <label class="form-label"
-                                                   for="client_id">{{ __('messages.client_id') }}</label>
-                                            <input type="text" class="form-control" id="client_id"
-                                                   placeholder="{{ __('messages.client_id') }}" name="client_id"
-                                                   value="{{ @$salla->client_id }}">
+
+                                        <div class="col-6">
+                                            <div class="col-md-12 col-xl-12 p-2">
+                                                <label class="form-label"
+                                                       for="client_id">{{ __('messages.client_id') }}</label>
+                                                <input type="text" class="form-control" id="client_id"
+                                                       placeholder="{{ __('messages.client_id') }}" name="client_id"
+                                                       value="{{ @$salla->client_id }}">
+                                            </div>
+
+                                            <div class="col-md-12 col-xl-12 p-2">
+                                                <label class="form-label"
+                                                       for="client_secret">{{ __('messages.client_secret') }}</label>
+                                                <input type="text" class="form-control" id="client_secret"
+                                                       placeholder="{{ __('messages.client_secret') }}" name="client_secret"
+                                                       value="{{ @$salla->client_secret }}">
+                                            </div>
                                         </div>
 
-                                        <div class="col-md-6 col-xl-6 p-2">
-                                            <label class="form-label"
-                                                   for="client_secret">{{ __('messages.client_secret') }}</label>
-                                            <input type="text" class="form-control" id="client_secret"
-                                                   placeholder="{{ __('messages.client_secret') }}" name="client_secret"
-                                                   value="{{ @$salla->client_secret }}">
+                                        <div class="col-6">
+                                            <img src="{{ url('Brand') }}/assets/images/salla.png" style="height: 70%;width: 82%">
                                         </div>
+
+                                        @if($salla->expire_at)
+                                            <div class="col-12">
+                                                <p>{{__("messages.expire_at")}} : <span class="fw-bold">{{$salla->expire_at}}</span> </p>
+                                                <p><i class="fa fa-warning"></i> {{__("messages.renew_the_data")}} </p>
+                                            </div>
+                                        @endif
 
 
                                         <div class="d-grid p-2 my-2">

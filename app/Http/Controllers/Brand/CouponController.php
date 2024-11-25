@@ -15,17 +15,17 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\Facades\DataTables;
 
-class ClientController extends Controller
+class CouponController extends Controller
 {
     use NotificationTrait;
 
     public function index(Request $request)
     {
         $salla = SallaStore::where('brand_id',brand()->user()->id)->first();
-        $brandsResponse = $this->getClientBrands();
-        $clients = is_object($brandsResponse) && method_exists($brandsResponse, 'getData') ? $brandsResponse->getData() : [];
-        return view('Brand.clients', [
-            'clients' => $clients,
+        $brandsResponse = $this->getCouponsOfBrands();
+        $coupons = is_object($brandsResponse) && method_exists($brandsResponse, 'getData') ? $brandsResponse->getData() : [];
+        return view('Brand.coupons', [
+            'coupons' => $coupons,
             'salla'   => $salla,
         ]);
     }
@@ -33,7 +33,7 @@ class ClientController extends Controller
     public function getData()
     {
         Carbon::now('Asia/Riyadh');
-        $brands = $this->getClientBrands()->getData()->data;
+        $brands = $this->getCouponsOfBrands()->getData()->data;
         return DataTables::of($brands)
             ->addColumn('discount', function ($coupon) {
                 return '<span class="discount">' . $coupon->discount . '</span>' . '%';
@@ -54,13 +54,13 @@ class ClientController extends Controller
             ->make(true);
     }
 
-    public function getClientBrands()
+    public function getCouponsOfBrands()
     {
         try {
             $salla = SallaStore::where('brand_id', brand()->id())->first();
 
             // Define the endpoint URL
-            $url = config('salla.salla-api-url') . '/customers';
+            $url = config('salla.salla-api-url') . '/coupons';
 
             // Make the API request
             $response = Http::withToken($salla->access_token)->acceptJson()->get($url);

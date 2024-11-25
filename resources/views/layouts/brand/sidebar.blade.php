@@ -32,6 +32,14 @@
                         <span class="pc-mtext">{{ __('messages.clients') }}</span>
                     </a>
                 </li>
+                <li class="pc-item">
+                    <a href="{{ route('brand.coupons') }}" class="pc-link">
+                        <span class="pc-micon" >
+                            <img src="{{ url('Brand') }}/assets/images/coupon.png" alt="">
+                        </span>
+                        <span class="pc-mtext">{{ __('messages.coupons_Salla') }}</span>
+                    </a>
+                </li>
                 <!-- link -->
                 <li class="pc-item">
                     <a href="{{ route('brand.dashboard') }}" class="pc-link">
