@@ -102,6 +102,7 @@ return [
     'to_get_the_salla' => 'To get the data to link the Salla store, please visit the following link',
     'be aware' => 'Please specify the access permission to clients and all the required permissions when creating the application',
     'clients' => 'Clients',
+    "Scope does not include carts.read" => 'Scope does not include carts read',
     'name' => 'name',
     'mobile' => 'mobile',
     'country' => 'country',
@@ -130,6 +131,14 @@ return [
     'usage_limit' => 'usage limit',
     'usage_limit_per_user' => 'usage limit per user',
     'co_created_at' => 'created at',
-
+    'salla_carts' => 'Salla carts',
+    'customer_name' => 'Customer name',
+    'unknown_customer' => 'Unknown customer',
+    'total' => 'total',
+    'subtotal' => 'subtotal',
+    'total_discount' => 'total discount',
+    'unknown_currency' => 'unknown currency',
+    'items' => 'items',
+    'updated_at' => 'Updated at',
 
 ];

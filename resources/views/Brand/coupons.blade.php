@@ -16,7 +16,7 @@
                 <div class="col-12 p-2">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between flex-wrap align-items-center">
-                            <h4> {{ __('messages.clients') }} </h4>
+                            <h4> {{ __('messages.coupons') }} </h4>
                         </div>
                     </div>
                     <div class="card-body">

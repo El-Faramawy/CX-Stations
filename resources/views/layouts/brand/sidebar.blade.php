@@ -40,6 +40,14 @@
                         <span class="pc-mtext">{{ __('messages.coupons_Salla') }}</span>
                     </a>
                 </li>
+                <li class="pc-item">
+                    <a href="{{ route('brand.carts') }}" class="pc-link">
+                        <span class="pc-micon" >
+                            <img src="{{ url('Brand') }}/assets/images/shopping-cart.png" alt="">
+                        </span>
+                        <span class="pc-mtext">{{ __('messages.salla_carts') }}</span>
+                    </a>
+                </li>
                 <!-- link -->
                 <li class="pc-item">
                     <a href="{{ route('brand.dashboard') }}" class="pc-link">
