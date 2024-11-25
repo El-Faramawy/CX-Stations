@@ -151,6 +151,9 @@ class SettingController extends Controller
             if (!in_array('carts.read', $scopes) && !in_array('carts.read_write', $scopes) ) {
                 return redirect()->route('brand.settings')->withErrors(__('messages.Scope does not include carts.read'));
             }
+            if (!in_array('products.read', $scopes) && !in_array('products.read_write', $scopes) ) {
+                return redirect()->route('brand.settings')->withErrors(__('messages.Scope does not include products.read'));
+            }
 
         }
 

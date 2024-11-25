@@ -140,5 +140,7 @@ return [
     'unknown_currency' => 'unknown currency',
     'items' => 'items',
     'updated_at' => 'Updated at',
+    'show_details' => 'Show details',
+    'Scope does not include products.read' => 'Scope does not include products.read',
 
 ];

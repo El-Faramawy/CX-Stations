@@ -47,6 +47,8 @@ Route::prefix('brand')->middleware('web')->namespace('App\Http\Controllers\Brand
         Route::get('carts', 'CartController@index')->name('brand.carts');
         Route::get('/carts/data', 'CartController@index')->name('carts.data');
 
+        Route::get('productDetails/{id}', 'CartController@productDetails')->name('brand.productDetails');
+
         Route::get('announce', 'AnnounceController@index')->name('brand.announce');
         Route::post('add_ad', 'AnnounceController@add_ad')->name('brand.add-ad');
 
